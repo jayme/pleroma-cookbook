@@ -1,7 +1,7 @@
 pleroma cookbook
 =================
 
-Chef cookbook for installing pleroma. 
+Chef cookbook for installing and configuring pleroma. (see [pleroma-test-cookbook](https://github.com/jayme/pleroma-test-cookbook) or below for example usage)
 
 **NOTE** pleroma requires postgres, which this cookbook does not provide. 
 
@@ -92,7 +92,7 @@ end
 Example Usage 
 -------
 
-Include the pleroma cookbook in your cookbook/recipes. See the following [example cookbook](https://github.com/jayme/pleroma-cookbook-test) for deploying a "full stack".
+Include the pleroma cookbook in your cookbook/recipes. See [pleroma-test-cookbook](https://github.com/jayme/pleroma-test-cookbook) for basic example cookbook structure.
 
 append to your Berksfile:
 
@@ -170,7 +170,7 @@ Testing
 
 The cookbook provides a kitchen-vagrant configuration and a pleroma_test cookbook for testing.
 
-**WARNING** Tests will utilize a postgres database provided by default property values (localhost) unless modified.
+**WARNING** Tests will utilize a postgresql database provided by default property values (localhost) unless modified. You must provide the postgresql server on your own. 
 
 Contributing
 ------------
