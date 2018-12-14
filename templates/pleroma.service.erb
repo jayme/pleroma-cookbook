@@ -1,0 +1,25 @@
+[Unit]
+Description=Pleroma social network
+After=network.target postgresql.service
+
+[Service]
+User=pleroma
+WorkingDirectory=<%= @path %>
+Environment="HOME=<%= @path %>"
+Environment="MIX_ENV=prod"
+ExecStartPre=/usr/local/bin/mix compile
+ExecStartPre=/usr/local/bin/mix ecto.migrate
+ExecStart=/usr/local/bin/mix phx.server
+ExecReload=/bin/kill $MAINPID
+KillMode=process
+Restart=on-failure
+TimeoutSec=600
+
+PrivateTmp=true
+ProtectSystem=full
+PrivateDevices=false
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
+

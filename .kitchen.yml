@@ -1,26 +1,25 @@
----
 driver:
   name: vagrant
+  server_name_prefix: "chef_pleroma"
+  network:
+    #- ["forwarded_port", {guest: 4000, host: 4000}]
 
 provisioner:
   name: chef_zero
-  # You may wish to disable always updating cookbooks in CI or other testing environments.
-  # For example:
-  #   always_update_cookbooks: <%= !ENV['CI'] %>
-  always_update_cookbooks: true
-
-verifier:
-  name: inspec
+  product_version: <%= ENV['KITCHEN_CHEF_VER'] || 14 %>
 
 platforms:
   - name: ubuntu-16.04
+  - name: ubuntu-14.04
+  - name: freebsd-11
   - name: centos-7
+  - name: debian-9
+
+verifier:
+  name: inspec
+  reporter: junit
 
 suites:
-  - name: default
+  - name: default-pleroma
     run_list:
-      - recipe[pleroma::default]
-    verifier:
-      inspec_tests:
-        - test/smoke/default
-    attributes:
+      - recipe[pleroma_test]

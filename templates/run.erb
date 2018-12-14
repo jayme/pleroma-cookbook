@@ -1,0 +1,22 @@
+#!/bin/sh
+
+exec 2>&1
+
+export MIX_ENV=prod
+export HOME=<%= @path %>
+export PATH=${PATH}:/usr/local/bin:/usr/local/sbin
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+cd <%= @path %>
+
+if [ ! -d <%= @path %>/uploads ]; then
+    install -d -o <%= @user %> -g wheel -m 755 <%= @path %>/uploads
+fi
+
+setuidgid <%= @user %> /usr/local/bin/mix deps.get | logger -t pleroma
+setuidgid <%= @user %> /usr/local/bin/mix clean | logger -t pleroma
+setuidgid <%= @user %> /usr/local/bin/mix compile | logger -t pleroma
+setuidgid <%= @user %> /usr/local/bin/mix ecto.migrate | logger -t pleroma
+
+exec setuidgid <%= @user %> /usr/local/bin/elixir --erl '-kernel inetrc "<%= @path %>/erl_inetrc"' -S mix phx.server

@@ -1,0 +1,6 @@
+%% -- ERLANG INET CONFIGURATION FILE --
+{inet6, false}.
+{edns, 0}.
+{cache_size, 0}.
+%%{lookup, [dns]}.
+%%{resolv_conf, "/tmp/resolv.conf"}.

@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+export MIX_ENV=prod
+export HOME=<%= @config[:path] %>
+cd <%= @config[:path] %>
+/usr/local/bin/mix compile
+/usr/local/bin/mix ecto.migrate
+/usr/local/bin/mix phx.server
