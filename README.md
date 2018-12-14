@@ -1,7 +1,7 @@
 pleroma cookbook
 =================
 
-Chef cookbook for installing and configuring pleroma. (see [pleroma-test-cookbook](https://github.com/jayme/pleroma-test-cookbook) or below for example usage)
+Chef cookbook for installing and configuring [pleroma](https://pleroma.social/). (see [pleroma-test-cookbook](https://github.com/jayme/pleroma-test-cookbook) or below for example usage)
 
 **NOTE** pleroma requires postgres, which this cookbook does not provide. 
 
