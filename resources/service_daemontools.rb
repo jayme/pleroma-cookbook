@@ -33,7 +33,7 @@ action :start do
     owner 'root'
     group 'wheel'
     mode '0700'
-    variables(path: new_resource.path, user: new_resource.user)
+    variables(path: new_resource.path, user: new_resource.username)
   end
 
   cookbook_file 'erl_inetrc' do

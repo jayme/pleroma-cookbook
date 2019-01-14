@@ -11,8 +11,8 @@ action :create do
     path "#{new_resource.path}/config/extra/prod.secret.vapid.exs"
     source 'prod.secret.vapid.exs.erb'
     cookbook 'pleroma'
-    owner new_resource.user.to_s
-    group new_resource.group.to_s
+    owner new_resource.username.to_s
+    group new_resource.groupname.to_s
     mode '0640'
     variables(vapid: new_resource.vapid)
     action :create
@@ -35,8 +35,8 @@ action :create do
     path "#{new_resource.path}/config/prod.secret.exs"
     source "prod.secret.exs.erb"
     cookbook 'pleroma'
-    owner new_resource.user.to_s
-    group new_resource.group.to_s
+    owner new_resource.username.to_s
+    group new_resource.groupname.to_s
     mode '0640'
     variables(pleroma: pleroma_config)
   end

@@ -76,10 +76,12 @@ action :install do
     end
   end
 
-  group new_resource.group
+  group new_resource.groupname do
+    action :create
+  end
 
-  user new_resource.user do
-    gid new_resource.group
+  user new_resource.username do
+    gid new_resource.groupname
     shell '/bin/false'
     home new_resource.path
   end
@@ -94,8 +96,8 @@ action :install do
   end
 
   directory new_resource.path do
-    owner new_resource.user
-    group new_resource.group
+    owner new_resource.username
+    group new_resource.groupname
     mode '0755'
     action :nothing
     notifies :run, 'execute[mix]', :immediately
@@ -103,7 +105,7 @@ action :install do
 
   execute 'mix' do
     cwd new_resource.path
-    user new_resource.user
+    user new_resource.username
     environment({
         'HOME' => new_resource.path, 
         'PATH' => '/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/bin:/sbin'

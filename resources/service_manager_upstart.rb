@@ -32,8 +32,8 @@ action :start do
     variables(
       config: {
         path: new_resource.path.to_s, 
-        user: new_resource.user.to_s, 
-        group: new_resource.group.to_s
+        user: new_resource.username.to_s, 
+        group: new_resource.groupname.to_s
     })
     action :create
   end

@@ -38,8 +38,8 @@ Installs a pleroma instance using default properties below.
 |name|type|default|info|
 |---|---|---|---|
 |instance|string|name_property| the instance name, defaults to the required name property|
-|user|string|pleroma| the pleroma system user |
-|group|string|pleroma| the pleroma system group |
+|username|string|pleroma| the pleroma system user |
+|groupname|string|pleroma| the pleroma system group |
 |path|string|/opt/pleroma| directory for pleroma source |
 |repo|string|https://git.pleroma.social/pleroma/pleroma.git| the pleroma repo url|
 |branch|string|develop| the pleroma branch to sync |
@@ -48,8 +48,8 @@ Usage:
 
 ```
 pleroma_install 'testing' do
-  user 'pleroma'
-  group 'pleroma'
+  username 'pleroma'
+  groupname 'pleroma'
   path '/opt/pleroma'
 end
 ```
