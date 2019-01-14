@@ -9,8 +9,8 @@ module Pleroma
     def self.included(base)
       base.class_eval do
         property :instance, String, name_property: true
-        property :user, String, default: 'pleroma'
-        property :group, String, default: 'pleroma'
+        property :username, String, default: 'pleroma'
+        property :groupname, String, default: 'pleroma'
         property :path, String, default: '/opt/pleroma'
         property :repo, String, default: 'https://git.pleroma.social/pleroma/pleroma.git'
         property :branch, String, default: 'develop'
@@ -44,7 +44,7 @@ end
 def vapid_keys
   require 'openssl'
   require 'base64'
-  key = OpenSSL::PKey::EC.generate("prime256v1")
+  key = OpenSSL::PKey::EC.new("prime256v1").generate_key
   private_key = Base64.encode64(key.private_key.to_s).gsub("\n", "")
   public_key = Base64.encode64(key.public_key.to_s).gsub("\n", "")
   hash = { public_key: public_key.to_s, private_key: private_key.to_s }
