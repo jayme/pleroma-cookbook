@@ -7,8 +7,8 @@ User=pleroma
 WorkingDirectory=<%= @path %>
 Environment="HOME=<%= @path %>"
 Environment="MIX_ENV=prod"
-ExecStartPre=/usr/local/bin/mix compile
-ExecStartPre=/usr/local/bin/mix ecto.migrate
+ExecStartPre=/usr/bin/mix compile
+ExecStartPre=/usr/bin/mix ecto.migrate
 ExecStart=/usr/local/bin/mix phx.server
 ExecReload=/bin/kill $MAINPID
 KillMode=process
