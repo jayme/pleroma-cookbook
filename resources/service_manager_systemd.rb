@@ -16,7 +16,7 @@ action :start do
     owner 'root'
     group 'root'
     mode 0644
-    variables(path: new_resource.path.to_s)
+    variables(path: new_resource.path.to_s, username: new_resource.username.to_s)
     action :create
   end
 

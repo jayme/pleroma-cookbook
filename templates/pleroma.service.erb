@@ -3,13 +3,14 @@ Description=Pleroma social network
 After=network.target postgresql.service
 
 [Service]
-User=pleroma
+Type=simple
+User=<%= @username %>
 WorkingDirectory=<%= @path %>
 Environment="HOME=<%= @path %>"
 Environment="MIX_ENV=prod"
 ExecStartPre=/usr/bin/mix compile
 ExecStartPre=/usr/bin/mix ecto.migrate
-ExecStart=/usr/local/bin/mix phx.server
+ExecStart=/usr/bin/mix phx.server
 ExecReload=/bin/kill $MAINPID
 KillMode=process
 Restart=on-failure
