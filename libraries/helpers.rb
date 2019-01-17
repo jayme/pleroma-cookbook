@@ -29,6 +29,24 @@ module Pleroma
         property :public, [true, false], default: true
         property :email, String, default: "pleroma@#{node['fqdn']}"
         property :vapid, Hash, default: lazy { vapid_keys }
+        property :db_pool_size, Integer, default: 8
+        property :description, String, default: lazy { hostname }
+        property :limit, Integer, default: 1000
+        property :upload_limit, String, default: '16_000_000'
+        property :registrations_open, [true, false], default: true
+        property :federating, [true, false], default: true
+        property :finmoji_enabled, [true, false], default: false
+        property :extended_nickname_format, [true, false], default: false
+        property :debug_errors, [true, false], default: true
+        property :code_reloader, [true, false], default: true
+        property :check_origin, [true, false], default: false
+        property :chat_enabled, [true, false], default: false
+        property :rewrite_policy, String, default: 'Pleroma.Web.ActivityPub.MRF.SimplePolicy'
+        property :url_scheme, String, default: 'https'
+        property :url_port, Integer, default: 443
+        property :port, Integer, default: 4000
+        property :protocol, String, default: 'http'
+        property :log_level, String, default: 'debug'
       end
     end
   end
