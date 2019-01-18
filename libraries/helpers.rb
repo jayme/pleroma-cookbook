@@ -47,6 +47,7 @@ module Pleroma
         property :port, Integer, default: 4000
         property :protocol, String, default: 'http'
         property :log_level, String, default: 'debug'
+        property :unfurl_nsfw, [true, false], default: true
       end
     end
   end

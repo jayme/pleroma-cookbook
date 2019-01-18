@@ -46,7 +46,8 @@ action :create do
     url_scheme: new_resource.url_scheme,
     url_port: new_resource.url_port,
     chat_enabled: new_resource.chat_enabled,
-    log_level: new_resource.log_level
+    log_level: new_resource.log_level,
+    unfurl_nsfw: new_resource.unfurl_nsfw
   }
 
   template 'prod.secret.exs' do
