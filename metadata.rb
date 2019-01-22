@@ -4,7 +4,7 @@ maintainer_email 'jayme@email.com'
 license 'GPL-3.0'
 description 'Installs/Configures pleroma'
 long_description 'Installs/Configures pleroma'
-version '1.0.3'
+version '1.0.4'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 %w(ubuntu debian redhat centos freebsd).each do |os|

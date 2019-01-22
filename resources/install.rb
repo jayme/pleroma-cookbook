@@ -26,6 +26,10 @@ action :install do
     bsd_pkgs.each do |pkg|
       package pkg
     end
+    poise_git_client 'git' do
+      provider :dummy
+      options git_binary: '/usr/local/bin/git'
+    end
 
   when 'debian'
     remote_file "#{file_cache}/#{new_resource.erlang_deb_file}" do
@@ -89,6 +93,7 @@ action :install do
   end
 
   application_git new_resource.path do
+    deploy_key deploy_key
     repository new_resource.repo
     checkout_branch new_resource.branch
     revision new_resource.branch
@@ -96,15 +101,6 @@ action :install do
     action :sync
     notifies :create, "directory[#{new_resource.path}]", :immediately
   end
-  #application new_resource.path do
-  #  git new_resource.repo do
-  #    deploy_key deploy_key
-  #    revision new_resource.branch
-  #    enable_checkout false
-  #    action :sync
-  #    notifies :create, "directory[#{new_resource.path}]", :immediately
-  #  end
-  #end
 
   directory new_resource.path do
     owner new_resource.username
