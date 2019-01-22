@@ -93,7 +93,7 @@ action :install do
   end
 
   application_git new_resource.path do
-    deploy_key deploy_key
+    deploy_key new_resource.deploy_key
     repository new_resource.repo
     checkout_branch new_resource.branch
     revision new_resource.branch
