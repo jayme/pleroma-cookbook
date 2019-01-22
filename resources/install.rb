@@ -4,6 +4,8 @@ resource_name :pleroma_install
 provides :pleroma_install
 default_action :install
 
+property :deploy_key, String
+
 # shortcuts
 file_cache = Chef::Config[:file_cache_path]
 # https://elixir-lang.org/install.html#unix-and-unix-like
@@ -86,7 +88,7 @@ action :install do
     home new_resource.path
   end
 
-  git new_resource.path do
+  application_git new_resource.path do
     repository new_resource.repo
     checkout_branch new_resource.branch
     revision new_resource.branch
@@ -94,6 +96,15 @@ action :install do
     action :sync
     notifies :create, "directory[#{new_resource.path}]", :immediately
   end
+  #application new_resource.path do
+  #  git new_resource.repo do
+  #    deploy_key deploy_key
+  #    revision new_resource.branch
+  #    enable_checkout false
+  #    action :sync
+  #    notifies :create, "directory[#{new_resource.path}]", :immediately
+  #  end
+  #end
 
   directory new_resource.path do
     owner new_resource.username
